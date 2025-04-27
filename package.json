@@ -1,0 +1,49 @@
+{
+  "name": "quick-analytics",
+  "version": "0.1.0",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"yarn next\" \"yarn electron-dev\"",
+    "next": "next dev",
+    "electron-dev": "wait-on http://localhost:3000 && cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
+    "build": "next build",
+    "start": "next start",
+    "package": "electron-builder"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "electron": "^35.2.1",
+    "next": "15.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "wait-on": "^8.0.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "autoprefixer": "^10.4.21",
+    "cross-env": "^7.0.3",
+    "electron-builder": "^26.0.12",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.4"
+  },
+  "build": {
+    "appId": "com.yourcompany.yourapp",
+    "files": [
+      "out/**/*",
+      "electron.js"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
