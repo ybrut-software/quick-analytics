@@ -7,6 +7,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1280,
     height: 800,
+    fullscreen: true,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false, // ✅ Turn off direct Node.js
