@@ -18,6 +18,7 @@
     "concurrently": "^9.1.2",
     "electron": "^35.2.1",
     "framer-motion": "^12.9.2",
+    "nedb-promises": "^6.2.3",
     "next": "15.3.1",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",

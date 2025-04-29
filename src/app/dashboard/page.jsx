@@ -7,10 +7,10 @@ import { Stat } from "@/app/stat";
 export default function Home() {
   useEffect(() => {
     // Send a message to Electron Main
-    window.electronAPI?.sendMessage("Hello from Renderer!");
+    window.electron?.sendMessage("Hello from Renderer!");
 
     // Listen for message from Main
-    window.electronAPI?.onMessage((message) => {
+    window.electron?.onMessage((message) => {
       console.log("Received from Main:", message);
     });
   }, []);

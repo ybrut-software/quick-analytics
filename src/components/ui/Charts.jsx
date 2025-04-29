@@ -392,3 +392,195 @@ export const RulesInsightsLineChart = () => {
 
   return <Bar data={data} options={options} />;
 };
+
+export const ViolationCasesLineChart = () => {
+  const data = {
+    labels: [
+      "Unit 1",
+      "Unit 2",
+      "Unit 3",
+      "Unit 4",
+      "Unit 5",
+      "Unit 6",
+      "Unit 7",
+      "Unit 8",
+      "Unit 9",
+      "Unit 10",
+      "Unit 11",
+      "Unit 12",
+      "Unit 13",
+      "Unit 14",
+    ],
+    datasets: [
+      {
+        label: "Social Media Violations",
+        data: [5, 0, 0, 5, 5, 0, 0, 5, 5, 0, 0, 5, 5, 0],
+        borderColor: "#42A5F5",
+        backgroundColor: "#42a5f533",
+        fill: true,
+        tension: 0.3,
+      },
+      {
+        label: "Fake Recruitment",
+        data: [1, 0, 0, 2, 1, 0, 0, 2, 1, 0, 0, 2, 1, 0],
+        borderColor: "#66BB6A",
+        backgroundColor: "#66bb6a33",
+        fill: true,
+        tension: 0.3,
+      },
+      {
+        label: "Loss of Identity/Documents",
+        data: [2, 0, 1, 3, 2, 0, 0, 1, 2, 0, 0, 3, 2, 0],
+        borderColor: "#FFA726",
+        backgroundColor: "#ffa72633",
+        fill: true,
+        tension: 0.3,
+      },
+      {
+        label: "No of BOO conducted",
+        data: [4, 1, 1, 3, 4, 1, 1, 3, 4, 1, 1, 3, 4, 1],
+        borderColor: "#AB47BC",
+        backgroundColor: "#ab47bc33",
+        fill: true,
+        tension: 0.3,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Violation Cases Across Units",
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Number of Cases",
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: "Units",
+        },
+      },
+    },
+  };
+
+  return <Line data={data} options={options} />;
+};
+
+export const ViolationCasesBarChart = () => {
+  const data = {
+    labels: [
+      "Unit 1",
+      "Unit 2",
+      "Unit 3",
+      "Unit 4",
+      "Unit 5",
+      "Unit 6",
+      "Unit 7",
+      "Unit 8",
+      "Unit 9",
+      "Unit 10",
+      "Unit 11",
+      "Unit 12",
+      "Unit 13",
+      "Unit 14",
+    ],
+    datasets: [
+      {
+        label: "Social Media Violations",
+        data: [5, 0, 0, 5, 5, 0, 0, 5, 5, 0, 0, 5, 5, 0],
+        backgroundColor: "#42A5F5",
+      },
+      {
+        label: "Fake Recruitment",
+        data: [1, 0, 0, 2, 1, 0, 0, 2, 1, 0, 0, 2, 1, 0],
+        backgroundColor: "#66BB6A",
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Violation Cases Comparison (Bar Chart)",
+      },
+    },
+  };
+
+  return <Bar data={data} options={options} />;
+};
+
+export const SocialMediaViolationsPieChart = () => {
+  const data = {
+    labels: [
+      "Unit 1",
+      "Unit 2",
+      "Unit 3",
+      "Unit 4",
+      "Unit 5",
+      "Unit 6",
+      "Unit 7",
+      "Unit 8",
+      "Unit 9",
+      "Unit 10",
+      "Unit 11",
+      "Unit 12",
+      "Unit 13",
+      "Unit 14",
+    ],
+    datasets: [
+      {
+        label: "Social Media Violations",
+        data: [5, 0, 0, 5, 5, 0, 0, 5, 5, 0, 0, 5, 5, 0],
+        backgroundColor: [
+          "#42A5F5",
+          "#66BB6A",
+          "#FFA726",
+          "#AB47BC",
+          "#26C6DA",
+          "#EF5350",
+          "#8D6E63",
+          "#FFCA28",
+          "#26A69A",
+          "#7E57C2",
+          "#789262",
+          "#5C6BC0",
+          "#F06292",
+          "#FF7043",
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+      title: {
+        display: true,
+        text: "Social Media Violations Distribution",
+      },
+    },
+  };
+
+  return <Pie data={data} options={options} />;
+};
