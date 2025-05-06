@@ -1,19 +1,17 @@
 "use client";
 
 import { Heading } from "@/components/heading";
+import { ROUTES } from "@/components/ui/AppNavbar";
+import { snakeToWords } from "@/utils/utils";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Stat } from "./stat";
 import { CASE_FIELDS } from "./analytics/page";
+import { Stat } from "./stat";
 
 export default function Home() {
+  const router = useRouter();
   useEffect(() => {
-    // Send a message to Electron Main
-    window.electron?.sendMessage("Hello from Renderer!");
-
-    // Listen for message from Main
-    window.electron?.onMessage((message) => {
-      console.log("Received from Main:", message);
-    });
+    router.push(ROUTES.dashboard);
   }, []);
   return (
     <>

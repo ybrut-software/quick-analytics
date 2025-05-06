@@ -48,7 +48,6 @@ export default function Home() {
   });
 
   const handleFormSubmit = (formData) => {
-    console.log(formData);
     mutation.mutate(formData);
   };
 
@@ -56,7 +55,7 @@ export default function Home() {
     <div className="max-w-7xl mx-auto">
       <Heading>Feed | Case Submission </Heading>
       <form className="my-8" onSubmit={handleSubmit(handleFormSubmit)}>
-        <Fieldset>
+        <Fieldset disabled={mutation.isPending}>
           <Legend>Unit Incident and Security Case Reporting Form</Legend>
           <Text>
             Please record and submit all incidents and cases pertaining to your
@@ -134,6 +133,20 @@ export default function Home() {
                   min: {
                     value: 0,
                     message: "Value cannot be negative",
+                  },
+                })}
+              />
+            </Field>
+          </FieldGroup>
+
+          <FieldGroup>
+            <Field>
+              <Label>Person Name</Label>
+              <Input
+                {...register("note", {
+                  required: {
+                    value: true,
+                    message: "Required Field",
                   },
                 })}
               />

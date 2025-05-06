@@ -14,7 +14,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1280,
     height: 800,
-    fullscreen: true,
+    // fullscreen: true,
     webPreferences: {
       preload: preloadPath,
       contextIsolation: true,

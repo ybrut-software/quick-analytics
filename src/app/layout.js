@@ -1,10 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import AppNavbar from "@/components/ui/AppNavbar";
-import "./globals.css";
 import { StackedLayout } from "@/components/stacked-layout";
+import AppNavbar from "@/components/ui/AppNavbar";
 import ReactQueryProvider from "@/lib/QueryProvider";
-import { Suspense } from "react";
-import Loading from "./loading";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

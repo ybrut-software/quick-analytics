@@ -10,7 +10,7 @@ import {
 import { Link } from "@/components/link";
 import { usePathname } from "next/navigation";
 
-const ROUTES = {
+export const ROUTES = {
   root: "/",
   dashboard: "/dashboard",
   feed: "/feed",

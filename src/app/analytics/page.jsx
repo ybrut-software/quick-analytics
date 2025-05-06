@@ -2,7 +2,7 @@
 
 import { findCases, findCasesGrouped, findCasesSummary } from "@/api/cases";
 import { Field, Label } from "@/components/fieldset";
-import { Heading } from "@/components/heading";
+import { Heading, Subheading } from "@/components/heading";
 import { Select } from "@/components/select";
 import {
   Table,
@@ -18,6 +18,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { UNIT_FIELDS } from "../feed/page";
 import { Stat } from "../stat";
+import Spinner from "@/components/spinner";
+import { Divider } from "@/components/divider";
 
 export default function AnalyticsPage() {
   const [filter, setFilter] = useState({
@@ -55,16 +57,20 @@ export default function AnalyticsPage() {
   const statsData = StatQuery?.data?.data;
 
   if (groupQuery.isLoading)
-    return <div className="min-h-screen text-center">Loading..</div>;
+    return (
+      <div className="min-h-screen text-center py-12">
+        <Spinner />
+      </div>
+    );
 
   return (
     <div className="max-w-7xl mx-auto">
       <Heading>Analytics</Heading>
 
-      <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
+      <div className="my-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
         <Field>
           <Label>NAME OF EST / UNIT / BRS</Label>
-          <Select name="unit" onChange={handleSelectFilter}>
+          <Select name="unit" value={filter.unit} onChange={handleSelectFilter}>
             {UNIT_FIELDS.map((i) => (
               <option key={i.value} value={i.value}>
                 {i.label}
@@ -74,7 +80,7 @@ export default function AnalyticsPage() {
         </Field>
       </div>
 
-      <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
+      <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
         <div>
           <CaseCountPieChart caseData={statsData?.cases} />
         </div>
@@ -98,7 +104,7 @@ export default function AnalyticsPage() {
       </div>
 
       {/* table data */}
-      <h5>Detailed List</h5>
+      <Subheading>Detailed List</Subheading>
       <CasesTable isLoading={casesQuery.isLoading} data={filteredCases} />
     </div>
   );
@@ -106,7 +112,7 @@ export default function AnalyticsPage() {
 
 export const CasesTable = ({ data, isLoading }) => {
   const tableConfig = {
-    columns: ["unit", "date", "case", "value", "remark"],
+    columns: ["unit", "date", "case", "value", "Person Name", "remark"],
     data: data,
   };
 
@@ -132,8 +138,11 @@ export const CasesTable = ({ data, isLoading }) => {
               <TableCell className="font-medium capitalize">
                 {snakeToWords(item.case)}
               </TableCell>
-              <TableCell>{item.value}</TableCell>
-              <TableCell className="text-zinc-500">{item.remark}</TableCell>
+              <TableCell>{item.value || "-"}</TableCell>
+              <TableCell>{item.note || "-"}</TableCell>
+              <TableCell className="text-zinc-500">
+                {item.remark || "-"}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

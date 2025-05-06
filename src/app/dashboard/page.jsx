@@ -1,12 +1,12 @@
 "use client";
 
-import { Heading, Subheading } from "@/components/heading";
-import { useEffect } from "react";
+import { findCases, findCasesSummary } from "@/api/cases";
 import { Stat } from "@/app/stat";
-import { CASE_FIELDS } from "../analytics/page";
+import { Heading, Subheading } from "@/components/heading";
 import { snakeToWords } from "@/utils/utils";
-import { findCasesSummary } from "@/api/cases";
 import { useQuery } from "@tanstack/react-query";
+import { CasesTable } from "../analytics/page";
+import Spinner from "@/components/spinner";
 
 export default function Home() {
   const StatQuery = useQuery({
@@ -14,7 +14,20 @@ export default function Home() {
     queryFn: () => findCasesSummary(),
   });
 
+  const casesQuery = useQuery({
+    queryKey: ["cases"],
+    queryFn: findCases,
+  });
+
   const statsData = StatQuery?.data?.data;
+  const casesData = casesQuery?.data || [];
+
+  if (casesQuery.isFetching || StatQuery.isFetching)
+    return (
+      <div className="min-h-screen text-center py-12">
+        <Spinner />
+      </div>
+    );
 
   return (
     <>
@@ -46,6 +59,11 @@ export default function Home() {
               />
             );
           })}
+        </div>
+
+        <div>
+          <Subheading>Case Entry List</Subheading>
+          <CasesTable data={casesData} isLoading={casesQuery.isFetching} />
         </div>
       </div>
     </>
