@@ -6,7 +6,9 @@ export function Stat({ title, value, change }) {
     <div className="my-6">
       <Divider />
       <div className="py-5">
-        <div className="text-lg/6 font-medium sm:text-sm/6">{title}</div>
+        <div className="text-lg/6 font-medium sm:text-sm/6 capitalize">
+          {title}
+        </div>
         <div className="mt-3 text-3xl/8 font-semibold sm:text-2xl/8">
           {value}
         </div>

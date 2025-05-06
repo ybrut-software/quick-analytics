@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import AppNavbar from "@/components/ui/AppNavbar";
 import "./globals.css";
 import { StackedLayout } from "@/components/stacked-layout";
+import ReactQueryProvider from "@/lib/QueryProvider";
 import { Suspense } from "react";
 import Loading from "./loading";
 
@@ -26,7 +27,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <StackedLayout navbar={<AppNavbar />}>{children}</StackedLayout>
+        <StackedLayout navbar={<AppNavbar />}>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </StackedLayout>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 "use client";
 
+import { addCase } from "@/api/cases";
 import { Button } from "@/components/button";
-import { Divider } from "@/components/divider";
 import {
   Description,
   Field,
@@ -12,17 +12,50 @@ import {
 } from "@/components/fieldset";
 import { Heading } from "@/components/heading";
 import { Input } from "@/components/input";
-import { Listbox, ListboxLabel, ListboxOption } from "@/components/listbox";
 import { Select } from "@/components/select";
 import { Text } from "@/components/text";
 import { Textarea } from "@/components/textarea";
+import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
 
 export default function Home() {
-  const handleSubmit = () => {};
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      ...{
+        remark: "Giving information",
+      },
+    },
+  });
+
+  const mutation = useMutation({
+    mutationFn: addCase,
+    onSuccess: (res) => {
+      console.log("res", res);
+      alert("Record added successfully!");
+      reset();
+    },
+    onError: (error) => {
+      console.error(error);
+      alert("Error: " + error.message);
+    },
+  });
+
+  const handleFormSubmit = (formData) => {
+    console.log(formData);
+    mutation.mutate(formData);
+  };
+
   return (
     <div className="max-w-7xl mx-auto">
       <Heading>Feed | Case Submission </Heading>
-      <form className="my-8">
+      <form className="my-8" onSubmit={handleSubmit(handleFormSubmit)}>
         <Fieldset>
           <Legend>Unit Incident and Security Case Reporting Form</Legend>
           <Text>
@@ -34,46 +67,103 @@ export default function Home() {
 
           <FieldGroup className="grid gap-12 grid-cols-2">
             <Field>
-              <Label>NAME OF EST/UNIT/BRS</Label>
-              <Listbox name="status" defaultValue={UNIT_FIELDS[0].value}>
+              <Label>NAME OF EST / UNIT / BRS</Label>
+              <Select
+                name="unit"
+                {...register("unit", {
+                  required: {
+                    value: true,
+                    message: "Required Field",
+                  },
+                })}
+              >
                 {UNIT_FIELDS.map((i) => (
-                  <ListboxOption value={i.value} key={i.value}>
-                    <ListboxLabel>{i.label}</ListboxLabel>
-                  </ListboxOption>
+                  <option key={i.value} value={i.value}>
+                    {i.label}
+                  </option>
                 ))}
-                <ListboxOption value="active"></ListboxOption>
-              </Listbox>
+              </Select>
             </Field>
 
             <Field>
               <Label> Month & Date</Label>
-              <Input name={"date"} type="date" />
+              <Input
+                name={"date"}
+                type="date"
+                {...register("date", {
+                  required: {
+                    value: true,
+                    message: "Required Field",
+                  },
+                })}
+              />
             </Field>
           </FieldGroup>
 
-          <FieldGroup>
-            <div className="grid gap-8 grid-cols-3">
-              {CASE_FIELDS.map((i) => (
-                <Field key={i.name}>
-                  <Label>{i.label}</Label>
-                  <Input name={i.name} type="number" />
-                </Field>
-              ))}
-            </div>
+          <FieldGroup className="grid gap-12 grid-cols-2">
+            <Field>
+              <Label>Case</Label>
+              <Select
+                name="case"
+                {...register("case", {
+                  required: {
+                    value: true,
+                    message: "Required Field",
+                  },
+                })}
+              >
+                <option>Select Case</option>
+                {CASE_FIELDS.map((i, idx) => (
+                  <option key={`case-option-${idx}`} value={i.name}>
+                    {i.label}
+                  </option>
+                ))}
+              </Select>
+            </Field>
+
+            <Field>
+              <Label>Case Count / Value</Label>
+              <Input
+                name={"date"}
+                type="number"
+                {...register("value", {
+                  required: {
+                    value: true,
+                    message: "Required Field",
+                  },
+                  min: {
+                    value: 0,
+                    message: "Value cannot be negative",
+                  },
+                })}
+              />
+            </Field>
           </FieldGroup>
 
           <FieldGroup>
             {/* Remark */}
             <Field>
               <Label>Remark</Label>
-              <Textarea name="remark" />
+              <Textarea
+                name="remark"
+                {...register("remark", {
+                  required: {
+                    value: true,
+                    message: "Required Field",
+                  },
+                })}
+              />
               <Description>Please Enter Remark</Description>
             </Field>
           </FieldGroup>
 
           <FieldGroup>
-            <Button className="me-3">Submit</Button>
-            <Button outline>Clear</Button>
+            <Button className="me-3" type="subnmit">
+              Submit
+            </Button>
+            <Button outline onClick={() => reset()}>
+              Clear
+            </Button>
           </FieldGroup>
         </Fieldset>
       </form>

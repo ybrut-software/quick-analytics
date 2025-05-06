@@ -570,7 +570,6 @@ export const SocialMediaViolationsPieChart = () => {
   };
 
   const options = {
-    responsive: true,
     plugins: {
       legend: {
         position: "bottom",
@@ -583,4 +582,101 @@ export const SocialMediaViolationsPieChart = () => {
   };
 
   return <Pie data={data} options={options} />;
+};
+
+export const CasePieChart = ({ data, unit }) => {
+  const caseCounts = data[unit]?.caseCounts || 0;
+  const labels = Object.keys(caseCounts) || [];
+  const values = Object.values(caseCounts) || [];
+
+  const chartData = {
+    labels,
+    datasets: [
+      {
+        label: "Case Distribution",
+        data: values,
+        backgroundColor: [
+          "#42A5F5",
+          "#66BB6A",
+          "#FFA726",
+          "#AB47BC",
+          "#26C6DA",
+          "#EF5350",
+          "#8D6E63",
+          "#FFCA28",
+          "#26A69A",
+          "#7E57C2",
+          "#789262",
+          "#5C6BC0",
+          "#F06292",
+          "#FF7043",
+        ],
+        borderColor: "#fff",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+    },
+  };
+
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <h2 className="text-lg font-semibold text-center mb-4">
+        Cases in {unit}
+      </h2>
+      <Pie data={chartData} options={options} />
+    </div>
+  );
+};
+
+export const CaseCountPieChart = ({ caseData = {} }) => {
+  if (!caseData || Object.keys(caseData).length === 0)
+    return <p>No case data available.</p>;
+
+  const labels = Object.keys(caseData);
+  const values = Object.values(caseData);
+
+  const chartData = {
+    labels,
+    datasets: [
+      {
+        label: "Case Count",
+        data: values,
+        backgroundColor: [
+          "#60a5fa",
+          "#34d399",
+          "#f87171",
+          "#fbbf24",
+          "#a78bfa",
+          "#fb7185",
+        ],
+        borderColor: "#fff",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+    },
+  };
+
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <h2 className="text-lg font-semibold text-center mb-4">
+        Total Cases Overview
+      </h2>
+      <Pie data={chartData} options={options} />
+    </div>
+  );
 };
