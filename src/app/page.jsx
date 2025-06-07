@@ -1,28 +1,79 @@
 "use client";
 
-import { Heading } from "@/components/heading";
-import { ROUTES } from "@/components/ui/AppNavbar";
+import { findCases, findCasesSummary } from "@/api/cases";
+import { Stat } from "@/app/stat";
+import { Heading, Subheading } from "@/components/heading";
+import Spinner from "@/components/spinner";
+import { CaseCountPieChart } from "@/components/ui/Charts";
 import { snakeToWords } from "@/utils/utils";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { CASE_FIELDS } from "./analytics/page";
-import { Stat } from "./stat";
+import { useQuery } from "@tanstack/react-query";
+import { CasesTable } from "./analytics/page";
 
 export default function Home() {
-  const router = useRouter();
-  useEffect(() => {
-    router.push(ROUTES.dashboard);
-  }, []);
+  const StatQuery = useQuery({
+    queryKey: ["cases", "summary"],
+    queryFn: () => findCasesSummary(),
+  });
+
+  const casesQuery = useQuery({
+    queryKey: ["cases"],
+    queryFn: findCases,
+  });
+
+  const statsData = StatQuery?.data?.data;
+  const casesData = casesQuery?.data || [];
+
+  if (casesQuery.isFetching || StatQuery.isFetching)
+    return (
+      <div className="min-h-screen text-center py-12">
+        <Spinner />
+      </div>
+    );
+
   return (
     <>
       <div className="max-w-7xl mx-auto min-h-screen">
-        <Heading>Overview</Heading>
-        <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
-          {CASE_FIELDS.map((i) => {
+        <Heading>Dashboard</Heading>
+        <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
+          <div>
+            <Heading> Cases Overview</Heading>
+            <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+              {Object.keys(statsData?.cases || {}).map((i) => {
+                const value = statsData?.cases[i] || 0;
+                return (
+                  <Stat
+                    key={`cases-stat-${i}`}
+                    title={snakeToWords(i)}
+                    value={value}
+                    change="0"
+                  />
+                );
+              })}
+            </div>
+          </div>
+          <div>
+            <CaseCountPieChart caseData={statsData?.cases} />
+          </div>
+        </div>
+
+        <Heading>Unit Wise Distribution</Heading>
+        <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+          {Object.keys(statsData?.units || []).map((i) => {
+            const value = statsData?.units[i]?.total || 0;
             return (
-              <Stat title={snakeToWords(i.label)} value={i.value} change="0" />
+              <Stat
+                key={`unit-stat-${i}`}
+                title={snakeToWords(i)}
+                value={value}
+                change="0"
+              />
             );
           })}
+        </div>
+
+        <div>
+          <Subheading>Case Entry List</Subheading>
+          <CasesTable data={casesData} isLoading={casesQuery.isFetching} />
         </div>
       </div>
     </>

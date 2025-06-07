@@ -3,29 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "main": "./electron/main.js",
+  "homepage": "./",
   "scripts": {
     "dev": "concurrently \"yarn next\" \"yarn electron-dev\"",
     "next": "next dev",
-    "electron-dev": "wait-on http://localhost:3000 && cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
     "build": "next build",
+    "electron-dev": "wait-on http://localhost:3000 && cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
     "start": "next start",
-    "package": "electron-builder"
+    "clean": "rimraf .next out dist",
+    "build-electron": "electron-builder",
+    "dist": "yarn build && electron-builder --publish=never",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps",
+    "build:electron": "electron-builder",
+    "pack:all": "yarn build  && electron-builder --mac --win --linux",
+    "pack:win": "yarn build && electron-builder --win",
+    "pack:mac": "yarn build && electron-builder --mac",
+    "pack:linux": "yarn build && electron-builder --linux"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.2",
     "@heroicons/react": "^2.2.0",
     "@tanstack/react-query": "^5.75.1",
     "chart.js": "^4.4.9",
+    "compression": "^1.8.0",
     "concurrently": "^9.1.2",
-    "electron": "^35.2.1",
+    "express": "^5.1.0",
+    "express-static-gzip": "^3.0.0",
     "framer-motion": "^12.9.2",
     "nedb-promises": "^6.2.3",
-    "next": "15.3.1",
-    "react": "^19.0.0",
+    "next": "^15.3.2",
+    "react": "^19.1.0",
     "react-chartjs-2": "^5.3.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.1",
-    "wait-on": "^8.0.3"
+    "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -36,22 +48,34 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.4"
+    "wait-on": "^8.0.3",
+    "electron": "^35.2.1"
   },
   "build": {
-    "appId": "com.yourcompany.yourapp",
+    "appId": "com.quick.analytics",
+    "productName": "Quick Analytics",
+    "directories": {
+      "output": "dist"
+    },
     "files": [
+      "electron/**/*",
       "out/**/*",
-      "electron.js"
+      "node_modules/**/*"
     ],
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/nedb-promises/**/*"
+    ],
     "win": {
-      "target": "nsis"
+      "target": [
+        "nsis"
+      ]
     },
-    "linux": {
-      "target": "AppImage"
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     }
   }
 }

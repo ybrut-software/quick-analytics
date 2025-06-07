@@ -3,12 +3,13 @@
 import { findCases, findCasesSummary } from "@/api/cases";
 import { Stat } from "@/app/stat";
 import { Heading, Subheading } from "@/components/heading";
+import Spinner from "@/components/spinner";
+import { CaseCountPieChart } from "@/components/ui/Charts";
 import { snakeToWords } from "@/utils/utils";
 import { useQuery } from "@tanstack/react-query";
 import { CasesTable } from "../analytics/page";
-import Spinner from "@/components/spinner";
 
-export default function Home() {
+export default function Dashboard() {
   const StatQuery = useQuery({
     queryKey: ["cases", "summary"],
     queryFn: () => findCasesSummary(),
@@ -32,20 +33,29 @@ export default function Home() {
   return (
     <>
       <div className="max-w-7xl mx-auto min-h-screen">
-        <Heading> Cases Overview</Heading>
-        <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-          {Object.keys(statsData?.cases || {}).map((i) => {
-            const value = statsData?.cases[i] || 0;
-            return (
-              <Stat
-                key={`cases-stat-${i}`}
-                title={snakeToWords(i)}
-                value={value}
-                change="0"
-              />
-            );
-          })}
+        <Heading>Dashboard</Heading>
+        <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
+          <div>
+            <Heading> Cases Overview</Heading>
+            <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+              {Object.keys(statsData?.cases || {}).map((i) => {
+                const value = statsData?.cases[i] || 0;
+                return (
+                  <Stat
+                    key={`cases-stat-${i}`}
+                    title={snakeToWords(i)}
+                    value={value}
+                    change="0"
+                  />
+                );
+              })}
+            </div>
+          </div>
+          <div>
+            <CaseCountPieChart caseData={statsData?.cases} />
+          </div>
         </div>
+
         <Heading>Unit Wise Distribution</Heading>
         <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
           {Object.keys(statsData?.units || []).map((i) => {

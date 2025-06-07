@@ -119,29 +119,11 @@ export default function Home() {
                 ))}
               </Select>
             </Field>
-
-            <Field>
-              <Label>Case Count / Value</Label>
-              <Input
-                name={"date"}
-                type="number"
-                {...register("value", {
-                  required: {
-                    value: true,
-                    message: "Required Field",
-                  },
-                  min: {
-                    value: 0,
-                    message: "Value cannot be negative",
-                  },
-                })}
-              />
-            </Field>
           </FieldGroup>
 
           <FieldGroup>
             <Field>
-              <Label>Person Name</Label>
+              <Label>Accused Name</Label>
               <Input
                 {...register("note", {
                   required: {

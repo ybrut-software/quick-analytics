@@ -3,7 +3,9 @@
 import { findCases, findCasesGrouped, findCasesSummary } from "@/api/cases";
 import { Field, Label } from "@/components/fieldset";
 import { Heading, Subheading } from "@/components/heading";
+import { Input } from "@/components/input";
 import { Select } from "@/components/select";
+import Spinner from "@/components/spinner";
 import {
   Table,
   TableBody,
@@ -18,8 +20,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { UNIT_FIELDS } from "../feed/page";
 import { Stat } from "../stat";
-import Spinner from "@/components/spinner";
-import { Divider } from "@/components/divider";
 
 export default function AnalyticsPage() {
   const [filter, setFilter] = useState({
@@ -111,15 +111,35 @@ export default function AnalyticsPage() {
 }
 
 export const CasesTable = ({ data, isLoading }) => {
+  const [cases, setCases] = useState(data || []);
+
   const tableConfig = {
-    columns: ["unit", "date", "case", "value", "Person Name", "remark"],
-    data: data,
+    columns: ["unit", "date", "case", "accused name", "remark"],
+    data: cases,
+  };
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    const filtered = value
+      ? data.filter(
+          (item) => item.note && item.note.toLowerCase().includes(value)
+        )
+      : data;
+    console.log(filtered);
+    setCases(filtered);
   };
 
   if (isLoading) return <div className="my-12 text-center">Loading..</div>;
 
   return (
     <>
+      <div>
+        <Field>
+          <Label>Search</Label>
+          <Input placeholder="Accused Name" onInput={handleSearch} />
+        </Field>
+      </div>
       <Table>
         <TableHead>
           <TableRow>
@@ -138,7 +158,6 @@ export const CasesTable = ({ data, isLoading }) => {
               <TableCell className="font-medium capitalize">
                 {snakeToWords(item.case)}
               </TableCell>
-              <TableCell>{item.value || "-"}</TableCell>
               <TableCell>{item.note || "-"}</TableCell>
               <TableCell className="text-zinc-500">
                 {item.remark || "-"}

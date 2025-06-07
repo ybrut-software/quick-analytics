@@ -1,4 +1,5 @@
-{"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"3TyGwndY2EIw2NZx"}
+{"remark":"Giving information 3","unit":"unit 3","date":"2025-05-06","case":"social_media_violations","value":"2","note":"Person Name 3","_id":"23oW6ymGo9OJAbmh"}
+{"unit":"unit 3","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"3TyGwndY2EIw2NZx"}
 {"unit":"unit 2","date":"2025-05-13","case":"no_of_pio_calls","value":"34","remark":"sadsadsad","_id":"3u263dEYuN8QwfrY"}
 {"remark":"Giving information Remark","unit":"unit 4","date":"2025-05-06","case":"espionage_cases","value":"12","person":"Unit 4 Name","_id":"73nVuTQIwLl81tbJ"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"8dACwNe1I2bkCkza"}
@@ -6,13 +7,16 @@
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"HNDsmUGsPucYVgHf"}
 {"unit":"unit 1","date":"2025-05-13","case":"no_of_pio_calls","value":"34","remark":"remark 1","_id":"HTPEIS55RjSniFQj"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"I81oXbPqYQ0GGkWK"}
-{"unit":"unit 6","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"4","remark":"sadsadsad","_id":"TCQe5gVBpS1P5F9b"}
+{"remark":"Giving information","unit":"unit 1","date":"2025-05-06","case":"mutiny","value":"1","note":"Person M","_id":"MzSMLcZVI9O5MxNE"}
+{"remark":"Giving information","unit":"unit 2","date":"2025-05-06","case":"fake_recruitment","value":"4","note":"Person Case 2","_id":"SV2B6f4JbKRZZCQy"}
+{"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"4","remark":"sadsadsad","_id":"TCQe5gVBpS1P5F9b"}
 {"unit":"unit 4","date":"2025-05-23","case":"social_media_violations","value":"12","remark":"some remakr for unit 4","_id":"X7MdVvgHAi4w0xh4"}
 {"remark":"Giving information","unit":"unit 2","date":"2025-05-02","case":"espionage_cases","value":"4","_id":"cPQxjyceDfsKqV0v"}
 {"unit":"unit 1","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"remark 1","_id":"e7aoZkVvPvxwJrq2"}
 {"unit":"unit 5","date":"2025-05-13","case":"robbery_cases","value":"34","remark":"remark 1","_id":"eEus4WzmsbwzzAUk"}
 {"unit":"unit 9","date":"2025-05-13","case":"financial_frauds","value":"34","remark":"remark 1","_id":"iTjSVHsDXOEInRPg"}
 {"unit":"unit 1","date":"2025-05-13","case":"espionage_cases","value":"7","remark":"EC","_id":"ixYkSOW6RPI1Izyz"}
+{"remark":"Giving information demo","unit":"unit 5","date":"2025-05-13","case":"robbery_cases","value":"12","note":"Demo Name","_id":"qAtTq9g2BmUTy6RB"}
 {"unit":"unit 3","date":"2025-05-13","case":"chain_marketing","value":"34","remark":"remark 1","_id":"qFOA7lvuSplV2rBj"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"rowEoYxbIM2MIfId"}
 {"unit":"unit 6","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"30","remark":"sadsadsad","_id":"sH9X1ehTIJlE7h0R"}
@@ -20,6 +24,3 @@
 {"unit":"unit 3","date":"2025-05-13","case":"social_media_violations","value":"34","remark":"remark","_id":"uBgUNHVnwC8TiZEL"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"xTPrYEpKYhDoYZxn"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"ygYlNQ5kKEapdBLQ"}
-{"remark":"Giving information","unit":"unit 1","date":"2025-05-06","case":"mutiny","value":"1","note":"Person M","_id":"MzSMLcZVI9O5MxNE"}
-{"remark":"Giving information","unit":"unit 2","date":"2025-05-06","case":"fake_recruitment","value":"4","note":"Person Case 2","_id":"SV2B6f4JbKRZZCQy"}
-{"remark":"Giving information 3","unit":"unit 3","date":"2025-05-06","case":"social_media_violations","value":"2","note":"Person Name 3","_id":"23oW6ymGo9OJAbmh"}
