@@ -110,7 +110,7 @@ export default function AnalyticsPage() {
   );
 }
 
-export const CasesTable = ({ data, isLoading }) => {
+export const CasesTable = ({ data, isLoading, search = false }) => {
   const [cases, setCases] = useState(data || []);
 
   const tableConfig = {
@@ -134,12 +134,12 @@ export const CasesTable = ({ data, isLoading }) => {
 
   return (
     <>
-      <div>
+      {search ? (
         <Field>
           <Label>Search</Label>
           <Input placeholder="Accused Name" onInput={handleSearch} />
         </Field>
-      </div>
+      ) : null}
       <Table>
         <TableHead>
           <TableRow>

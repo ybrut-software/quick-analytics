@@ -8,7 +8,7 @@ import {
   NavbarSection,
   NavbarSpacer,
 } from "@/components/navbar";
-import { DivideIcon, PowerIcon } from "@heroicons/react/16/solid";
+import { PowerIcon } from "@heroicons/react/16/solid";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "../button";
@@ -17,6 +17,7 @@ export const ROUTES = {
   root: "/",
   dashboard: "/",
   feed: "/feed",
+  feeds: "/feeds",
   analytics: "/analytics",
   settings: "/settings",
 };
@@ -35,6 +36,11 @@ const PRIMARY_LINKS = [
   {
     name: "Feed",
     path: ROUTES.feed,
+    icon: null,
+  },
+  {
+    name: "Feeds",
+    path: ROUTES.feeds,
     icon: null,
   },
   {

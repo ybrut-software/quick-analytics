@@ -143,3 +143,9 @@ export function excludeKeys(obj, keysToExclude) {
     Object.entries(obj).filter(([key]) => !keysToExclude.includes(key))
   );
 }
+
+export const snakCase = (str = "") =>
+  str
+    .replace(/([a-z])([A-Z])/g, "$1_$2")
+    .replace(/\s+/g, "_")
+    .toLowerCase();

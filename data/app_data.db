@@ -1,26 +1,42 @@
 {"remark":"Giving information 3","unit":"unit 3","date":"2025-05-06","case":"social_media_violations","value":"2","note":"Person Name 3","_id":"23oW6ymGo9OJAbmh"}
+{"S/No":3,"Date":45841,"Case No":"CN00125","PIO Name & NO":"Vikram Singh, PIO9012","Modus Op":"Fake investment scheme","Info Shared":"Transaction records","Remarks":"Suspect arrested","_id":"3IhQeZQawJMOes2P"}
 {"unit":"unit 3","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"3TyGwndY2EIw2NZx"}
 {"unit":"unit 2","date":"2025-05-13","case":"no_of_pio_calls","value":"34","remark":"sadsadsad","_id":"3u263dEYuN8QwfrY"}
 {"remark":"Giving information Remark","unit":"unit 4","date":"2025-05-06","case":"espionage_cases","value":"12","person":"Unit 4 Name","_id":"73nVuTQIwLl81tbJ"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"8dACwNe1I2bkCkza"}
 {"unit":"unit 13","date":"2025-05-13","case":"fake_recruitment","value":"34","remark":"sadsadsad","_id":"A1k7ZW5A0HQTgIPG"}
+{"S/No":1,"Date":45839,"Case No":"CN00123","PIO Name & NO":"Anil Sharma, PIO1234","Modus Op":"Phishing via email","Info Shared":"Bank account details","Remarks":"Case escalated to cybercrime","_id":"AyEPOw0rxqpxE3Rw"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"HNDsmUGsPucYVgHf"}
 {"unit":"unit 1","date":"2025-05-13","case":"no_of_pio_calls","value":"34","remark":"remark 1","_id":"HTPEIS55RjSniFQj"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"I81oXbPqYQ0GGkWK"}
+{"S/No":1,"Date":45667,"PIO Name & NO":"Anil Sharma, PIO1234","Suspect Detls":"Rajesh Kumar, ID: SK789","Mob No Contacted":-141884,"Modus Op":"Phishing via email","Info Asked":"Bank account details","Info Shared":"Partial account info shared","Remarks":"Case escalated to cybercrime unit","_id":"LDFk1qt1pab67FHl"}
 {"remark":"Giving information","unit":"unit 1","date":"2025-05-06","case":"mutiny","value":"1","note":"Person M","_id":"MzSMLcZVI9O5MxNE"}
+{"S/No":1,"Date":45839,"Name":"John M. Carter","Unit":"Alpha Squad","Banned Apps":"TikTok, WeChat","Sensitive Info Uploaded/Photos in Uniform":"Photos in uniform posted on X","Remarks":"Warning issued, apps removed","_id":"P8pGb8vwrfIKKBPE"}
 {"remark":"Giving information","unit":"unit 2","date":"2025-05-06","case":"fake_recruitment","value":"4","note":"Person Case 2","_id":"SV2B6f4JbKRZZCQy"}
+{"S/No":7,"Date":45833,"PIO Name & NO":"Karan Joshi, PIO6789","Suspect Detls":"Priyanka Roy, ID: PR321","Mob No Contacted":-135710,"Modus Op":"Online extortion","Info Asked":"Details of threats received","Info Shared":"Screenshots shared","Remarks":"Suspect identified, case pending","_id":"SdwrcZkGsX7MpMAE"}
+{"S/No":5,"Date":45797,"PIO Name & NO":"Rohan Nair, PIO7890","Suspect Detls":"Unknown, alias \"Shadow\"","Mob No Contacted":-117550,"Modus Op":"Data breach attempt","Info Asked":"Source of breach","Info Shared":"None, suspect disconnected","Remarks":"Reported to IT security team","_id":"T0SLJVqsaF6YgM5G"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"4","remark":"sadsadsad","_id":"TCQe5gVBpS1P5F9b"}
 {"unit":"unit 4","date":"2025-05-23","case":"social_media_violations","value":"12","remark":"some remakr for unit 4","_id":"X7MdVvgHAi4w0xh4"}
+{"S/No":4,"Date":45842,"Name":"Emily R. Davis","Unit":"Delta Force","Banned Apps":"TikTok","Sensitive Info Uploaded/Photos in Uniform":"Photos in uniform on Instagram","Remarks":"Counseling session scheduled","_id":"Y45iwsOD2LPrAmqm"}
 {"remark":"Giving information","unit":"unit 2","date":"2025-05-02","case":"espionage_cases","value":"4","_id":"cPQxjyceDfsKqV0v"}
+{"S/No":2,"Date":45703,"PIO Name & NO":"Priya Menon, PIO5678","Suspect Detls":"Unknown, alias \"Viper\"","Mob No Contacted":-147932,"Modus Op":"Social media scam","Info Asked":"Identity of account owner","Info Shared":"None, suspect uncooperative","Remarks":"Under surveillance","_id":"drsL9LfZHtv8X06g"}
 {"unit":"unit 1","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"remark 1","_id":"e7aoZkVvPvxwJrq2"}
 {"unit":"unit 5","date":"2025-05-13","case":"robbery_cases","value":"34","remark":"remark 1","_id":"eEus4WzmsbwzzAUk"}
+{"S/No":8,"Date":45839,"PIO Name & NO":"Neha Gupta, PIO4567","Suspect Detls":"Unknown, alias \"Ghost\"","Mob No Contacted":-122266,"Modus Op":"Malware distribution","Info Asked":"Malware source and distribution method","Info Shared":"None, suspect evasive","Remarks":"Technical analysis in progress","_id":"g8zq30z53XRs99js"}
 {"unit":"unit 9","date":"2025-05-13","case":"financial_frauds","value":"34","remark":"remark 1","_id":"iTjSVHsDXOEInRPg"}
 {"unit":"unit 1","date":"2025-05-13","case":"espionage_cases","value":"7","remark":"EC","_id":"ixYkSOW6RPI1Izyz"}
+{"S/No":3,"Date":45721,"PIO Name & NO":"Vikram Singh, PIO9012","Suspect Detls":"Meena Gupta, ID: MG456","Mob No Contacted":-165228,"Modus Op":"Fake investment scheme","Info Asked":"Transaction records","Info Shared":"Confirmed fraudulent transactions","Remarks":"Suspect arrested","_id":"j9AfasDQ8NTsSDAS"}
+{"S/No":6,"Date":45816,"PIO Name & NO":"Deepa Rao, PIO2345","Suspect Detls":"Sanjay Verma, ID: SV678","Mob No Contacted":-104106,"Modus Op":"Fake identity documents","Info Asked":"Document verification details","Info Shared":"Forged ID confirmed","Remarks":"Legal action initiated","_id":"k2JB676q8Arz9JA7"}
+{"S/No":4,"Date":45759,"PIO Name & NO":"Sneha Patel, PIO3456","Suspect Detls":"Arjun Desai, ID: AD123","Mob No Contacted":-129672,"Modus Op":"Phone spoofing","Info Asked":"Call logs and device info","Info Shared":"Partial call logs provided","Remarks":"Investigation ongoing","_id":"m6kkNeRGppVBq0Zt"}
+{"S/No":4,"Date":45842,"Case No":"CN00126","PIO Name & NO":"Sneha Patel, PIO3456","Modus Op":"Phone spoofing","Info Shared":"Call logs provided","Remarks":"Investigation ongoing","_id":"mkJjiIMf0rz72K1M"}
 {"remark":"Giving information demo","unit":"unit 5","date":"2025-05-13","case":"robbery_cases","value":"12","note":"Demo Name","_id":"qAtTq9g2BmUTy6RB"}
 {"unit":"unit 3","date":"2025-05-13","case":"chain_marketing","value":"34","remark":"remark 1","_id":"qFOA7lvuSplV2rBj"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"rowEoYxbIM2MIfId"}
 {"unit":"unit 6","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"30","remark":"sadsadsad","_id":"sH9X1ehTIJlE7h0R"}
 {"remark":"Giving information","unit":"unit 1","date":"2025-05-07","case":"no_of_pio_calls","value":"2","_id":"u2SfHcWlbHFcbE8u"}
 {"unit":"unit 3","date":"2025-05-13","case":"social_media_violations","value":"34","remark":"remark","_id":"uBgUNHVnwC8TiZEL"}
+{"S/No":3,"Date":45841,"Name":"Michael T. Lee","Unit":"Charlie Company","Banned Apps":"Snapchat, Telegram","Sensitive Info Uploaded/Photos in Uniform":"None","Remarks":"Apps detected during audit","_id":"uC8GEhjzqWeor6S9"}
+{"S/No":2,"Date":45840,"Case No":"CN00124","PIO Name & NO":"Priya Menon, PIO5678","Modus Op":"Social media scam","Info Shared":"None, suspect uncooperative","Remarks":"Under surveillance","_id":"wMLxqNnyqv1Y1ctU"}
+{"S/No":2,"Date":45840,"Name":"Sarah L. Evans","Unit":"Bravo Unit","Banned Apps":"None","Sensitive Info Uploaded/Photos in Uniform":"Shared location data on WhatsApp","Remarks":"Under investigation","_id":"xRUmuKRNKe9hLDTS"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"xTPrYEpKYhDoYZxn"}
 {"unit":"unit 2","date":"2025-05-13","case":"contact_with_foreign_nationals","value":"34","remark":"sadsadsad","_id":"ygYlNQ5kKEapdBLQ"}

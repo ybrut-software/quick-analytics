@@ -10,6 +10,7 @@ contextBridge.exposeInMainWorld("electron", {
 
   // mutations
   addCase: (data) => ipcRenderer.invoke("case-add", data),
+  insertCases: (data) => ipcRenderer.invoke("cases-import", data),
 
   // query
   findCases: (query) => ipcRenderer.invoke("cases-find", query),

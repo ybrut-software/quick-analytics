@@ -6,22 +6,27 @@ const db = Datastore.create({
   autoload: true, // automatically load the database
 });
 
-// Example insert
+const db_config = Datastore.create({
+  filename: path.join(__dirname, "../data/app_configs.db"), // Save under /data folder
+  autoload: true, // automatically load the database
+});
+
 async function insertRecord(record) {
   return await db.insert(record);
 }
 
-// Example find
+async function importRecords(records) {
+  return await db.insert(records);
+}
+
 async function findRecords(query = {}) {
   return await db.find(query);
 }
 
-// Example update
 async function updateRecord(id, updateData) {
   return await db.update({ _id: id }, { $set: updateData });
 }
 
-// Example delete
 async function deleteRecord(id) {
   return await db.remove({ _id: id });
 }

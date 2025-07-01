@@ -83,11 +83,18 @@ function createWindow() {
 
   ipcMain.handle("case-add", async (event, data) => {
     try {
-      console.log("main insert record", data);
       const newRecord = await insertRecord(data);
       return { success: true, data: newRecord };
     } catch (error) {
-      console.error(error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle("cases-import", async (event, data) => {
+    try {
+      const newRecord = await insertRecord(data);
+      return { success: true, data: newRecord };
+    } catch (error) {
       return { success: false, error: error.message };
     }
   });
@@ -97,7 +104,6 @@ function createWindow() {
       const result = await findRecords(query);
       return { success: true, data: result };
     } catch (error) {
-      console.error(error);
       return { success: false, error: error.message };
     }
   });
@@ -107,7 +113,6 @@ function createWindow() {
       const result = await groupByField(query);
       return { success: true, data: result };
     } catch (error) {
-      console.error(error);
       return { success: false, error: error.message };
     }
   });
@@ -117,7 +122,6 @@ function createWindow() {
       const result = await getStatsSummary(query);
       return { success: true, data: result };
     } catch (error) {
-      console.error(error);
       return { success: false, error: error.message };
     }
   });
