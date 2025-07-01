@@ -117,7 +117,7 @@ export const AdvancedSearchBar = ({
         {activeFilters && (
           <div className="w-full sm:w-auto">
             <Button onClick={clearFilters} type="button">
-              <span className="mr-2">Clear Filters</span>
+              Clear Filters
             </Button>
           </div>
         )}

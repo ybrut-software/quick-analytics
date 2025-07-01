@@ -48,8 +48,7 @@ export function ExcelMultiSheetPreview({ onSuccess = null }) {
       case: snakCase(selectedSheet),
     }));
 
-    console.log("parsedPayload", parsedPayload);
-    ImportCaseMutation.mutate(data);
+    ImportCaseMutation.mutate(parsedPayload);
   };
 
   const handleFileUpload = (e) => {
