@@ -14,7 +14,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/table";
-import { CaseCountPieChart, CasePieChart } from "@/components/ui/Charts";
+import {
+  CaseCountPieChart,
+  CasePieChart,
+  ViolationCasesBarChart,
+  ViolationCasesLineChart,
+} from "@/components/ui/Charts";
 import { snakeToWords } from "@/utils/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -82,10 +87,19 @@ export default function AnalyticsPage() {
 
       <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
         <div>
-          <CaseCountPieChart caseData={statsData?.cases} />
+          <ViolationCasesBarChart caseData={statsData?.cases} />
         </div>
         <div>
+          <ViolationCasesLineChart caseData={statsData?.cases} />
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
+        <div>
           <CasePieChart data={statsData?.units} unit={filter.unit} />
+        </div>
+        <div>
+          <CaseCountPieChart caseData={statsData?.cases} />
         </div>
       </div>
 
@@ -105,7 +119,11 @@ export default function AnalyticsPage() {
 
       {/* table data */}
       <Subheading>Detailed List</Subheading>
-      <CasesTable isLoading={casesQuery.isLoading} data={filteredCases} />
+      <CasesTable
+        search
+        isLoading={casesQuery.isLoading}
+        data={filteredCases}
+      />
     </div>
   );
 }
