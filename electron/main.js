@@ -48,10 +48,6 @@ function createWindow() {
     log("Window ready to show");
     mainWindow.show();
     mainWindow.focus();
-
-    if (isDev) {
-      mainWindow.webContents.openDevTools();
-    }
   });
 
   mainWindow.webContents.on(
