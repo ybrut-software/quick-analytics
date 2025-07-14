@@ -37,11 +37,6 @@ const PRIMARY_LINKS = [
     path: ROUTES.feeds,
     icon: null,
   },
-  {
-    name: "Settings",
-    path: ROUTES.settings,
-    icon: null,
-  },
 ];
 
 const AppNavbar = () => {
