@@ -10,11 +10,15 @@ import Spinner from "@/components/spinner";
 import { DynamicTable } from "@/components/table/DynamicTable";
 import { useAdvanceSearch } from "@/hooks/useAdvanceSearch";
 import { snakeCaseToText } from "@/utils/caseConvertUtils";
+
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ImportFeedDialog } from "../feed/page";
 
 export default function FeedsPage() {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
 
   const casesQuery = useQuery({
     queryKey: ["cases"],
@@ -87,13 +91,8 @@ export default function FeedsPage() {
         <div className="flex justify-between">
           <Heading>Feeds</Heading>
           <div className="flex gap-3">
-            <Button
-              type="button"
-              onClick={() => {
-                router.push("/feed");
-              }}
-            >
-              + Add Feed
+            <Button type="button" onClick={() => setIsOpen(true)}>
+              + Add Feeds
             </Button>
             <ExportPdf data={filteredData} />
             <ExportPdf name="Export All" data={casesData} />
@@ -124,6 +123,16 @@ export default function FeedsPage() {
           />
         </div>
       </div>
+
+      {/* add feeds modal */}
+      <ImportFeedDialog
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        onSuccess={() => {
+          setIsOpen(false);
+          casesQuery.refetch();
+        }}
+      />
     </>
   );
 }

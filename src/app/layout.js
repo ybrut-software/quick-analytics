@@ -5,6 +5,7 @@ import { StackedLayout } from "@/components/stacked-layout";
 import AppNavbar from "@/components/ui/AppNavbar";
 import ReactQueryProvider from "@/lib/QueryProvider";
 import { Suspense } from "react";
+import NotificationWrapper from "@/components/notification/NotificationWrapper";
 
 export const metadata = {
   title: "QuickAnalytics",
@@ -18,11 +19,13 @@ export default function RootLayout({ children }) {
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         className={`antialiased`}
       >
-        <StackedLayout navbar={<AppNavbar />}>
-          <ReactQueryProvider>
-            <Suspense fallback={<Spinner />}>{children}</Suspense>
-          </ReactQueryProvider>
-        </StackedLayout>
+        <NotificationWrapper>
+          <StackedLayout navbar={<AppNavbar />}>
+            <ReactQueryProvider>
+              <Suspense fallback={<Spinner />}>{children}</Suspense>
+            </ReactQueryProvider>
+          </StackedLayout>
+        </NotificationWrapper>
       </body>
     </html>
   );

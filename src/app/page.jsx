@@ -6,8 +6,8 @@ import { Heading } from "@/components/heading";
 import Spinner from "@/components/spinner";
 import {
   CaseCountPieChart,
-  ViolationCasesBarChart,
-  ViolationCasesLineChart,
+  CasesAcrossUnitsBarChart,
+  CasesAcrossUnitsLineChart,
 } from "@/components/ui/Charts";
 import { snakeToWords } from "@/utils/utils";
 import { useQuery } from "@tanstack/react-query";
@@ -33,8 +33,8 @@ export default function Home() {
         <Heading>Dashboard</Heading>
         <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
           <div>
-            <ViolationCasesBarChart caseData={statsData?.cases} />
-            <ViolationCasesLineChart caseData={statsData?.cases} />
+            <CasesAcrossUnitsBarChart data={statsData?.units} />
+            <CasesAcrossUnitsLineChart data={statsData?.units} />
           </div>
           <div>
             <CaseCountPieChart caseData={statsData?.cases} />

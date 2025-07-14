@@ -1,8 +1,9 @@
 "use client";
 
-import { findCases, findCasesGrouped, findCasesSummary } from "@/api/cases";
+import { findCasesSummary } from "@/api/cases";
+import { Button } from "@/components/button";
 import { Field, Label } from "@/components/fieldset";
-import { Heading, Subheading } from "@/components/heading";
+import { Heading } from "@/components/heading";
 import { Input } from "@/components/input";
 import { Select } from "@/components/select";
 import Spinner from "@/components/spinner";
@@ -17,42 +18,29 @@ import {
 import {
   CaseCountPieChart,
   CasePieChart,
-  ViolationCasesBarChart,
-  ViolationCasesLineChart,
+  CasesAcrossUnitsBarChart,
+  CasesForUnitBarChart,
+  CasesForUnitLineChart,
 } from "@/components/ui/Charts";
 import { snakeToWords } from "@/utils/utils";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { UNIT_FIELDS } from "../feed/page";
 import { Stat } from "../stat";
 
+const DEFAULT_UNIT = "unit-0";
+
 export default function AnalyticsPage() {
+  const router = useRouter();
   const [filter, setFilter] = useState({
     field: "all",
-    unit: UNIT_FIELDS[0].value,
+    unit: DEFAULT_UNIT,
     case: "",
   });
 
   const handleSelectFilter = (e) => {
     setFilter((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
-  const casesQuery = useQuery({
-    queryKey: ["cases"],
-    queryFn: findCases,
-  });
-
-  const casesData = casesQuery?.data || [];
-  const filteredCases =
-    casesData?.filter((i) => i.unit === filter.unit) || casesData;
-
-  const groupQuery = useQuery({
-    queryKey: ["cases", "filter", filter],
-    queryFn: () =>
-      findCasesGrouped({
-        field: "",
-      }),
-  });
 
   const StatQuery = useQuery({
     queryKey: ["cases", "summary"],
@@ -61,7 +49,14 @@ export default function AnalyticsPage() {
 
   const statsData = StatQuery?.data?.data;
 
-  if (groupQuery.isLoading)
+  const getUnitOptions = () => {
+    return Object.keys(statsData?.units).map((i) => ({
+      value: i,
+      label: i,
+    }));
+  };
+
+  if (StatQuery.isLoading)
     return (
       <div className="min-h-screen text-center py-12">
         <Spinner />
@@ -69,62 +64,95 @@ export default function AnalyticsPage() {
     );
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <Heading>Analytics</Heading>
-
-      <div className="my-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
-        <Field>
-          <Label>NAME OF EST / UNIT / BRS</Label>
-          <Select name="unit" value={filter.unit} onChange={handleSelectFilter}>
-            {UNIT_FIELDS.map((i) => (
-              <option key={i.value} value={i.value}>
-                {i.label}
-              </option>
-            ))}
-          </Select>
-        </Field>
-      </div>
-
-      <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
-        <div>
-          <ViolationCasesBarChart caseData={statsData?.cases} />
+    <>
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between">
+          <Heading>Analytics</Heading>
+          <div className="flex gap-3">
+            <Button
+              onClick={() => {
+                router.push("/feeds");
+              }}
+            >
+              View Feeds
+            </Button>
+          </div>
         </div>
-        <div>
-          <ViolationCasesLineChart caseData={statsData?.cases} />
+        <div className="my-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
+          <Field>
+            <Label>NAME OF EST / UNIT / BRS</Label>
+            <Select
+              name="unit"
+              value={filter.unit}
+              onChange={handleSelectFilter}
+            >
+              {getUnitOptions().map((i) => (
+                <option key={i.value} value={i.value}>
+                  {i.label}
+                </option>
+              ))}
+            </Select>
+          </Field>
+        </div>
+
+        <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-1">
+          <div>
+            <CasesAcrossUnitsBarChart data={statsData?.units} />
+          </div>
+          <div>
+            <CasesForUnitBarChart data={statsData?.units} unit={filter.unit} />
+          </div>
+        </div>
+
+        <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
+          <div>
+            <CasePieChart data={statsData?.units} unit={filter.unit} />
+          </div>
+          <div>
+            <CaseCountPieChart caseData={statsData?.cases} />
+          </div>
+        </div>
+
+        <Heading>Unit Wise Distribution</Heading>
+        <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
+          {Object.keys(statsData?.units || []).map((i) => {
+            const value = statsData?.units[i]?.total || 0;
+            return (
+              <Stat
+                key={`unit-stat-${i}`}
+                title={snakeToWords(i)}
+                value={value}
+                change="0"
+              />
+            );
+          })}
+        </div>
+
+        <Heading className={"mt-12"}>Cases Stats</Heading>
+        <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
+          {Object.keys(statsData?.cases || {}).map((i) => {
+            const value = statsData?.cases[i] || 0;
+            return (
+              <Stat
+                key={`cases-stat-${i}`}
+                title={snakeToWords(i)}
+                value={value}
+                change="0"
+              />
+            );
+          })}
+        </div>
+
+        <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-1">
+          <div>
+            <Heading className={"mt-12 text-center"}>
+              Total Cases Across Units
+            </Heading>
+            <CasesForUnitLineChart data={statsData?.units} />
+          </div>
         </div>
       </div>
-
-      <div className="mt-5 grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
-        <div>
-          <CasePieChart data={statsData?.units} unit={filter.unit} />
-        </div>
-        <div>
-          <CaseCountPieChart caseData={statsData?.cases} />
-        </div>
-      </div>
-
-      <div className="mt-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
-        {Object.keys(statsData?.cases || {}).map((i) => {
-          const value = statsData?.cases[i] || 0;
-          return (
-            <Stat
-              key={`cases-stat-${i}`}
-              title={snakeToWords(i)}
-              value={value}
-              change="0"
-            />
-          );
-        })}
-      </div>
-
-      {/* table data */}
-      <Subheading>Detailed List</Subheading>
-      <CasesTable
-        search
-        isLoading={casesQuery.isLoading}
-        data={filteredCases}
-      />
-    </div>
+    </>
   );
 }
 

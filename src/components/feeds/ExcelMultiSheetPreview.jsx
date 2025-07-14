@@ -20,6 +20,7 @@ import { snakCase } from "@/utils/utils";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "../button";
 import Spinner from "../spinner";
+import { toast } from "react-toastify";
 
 export function ExcelMultiSheetPreview({ onSuccess = null }) {
   const [sheetNames, setSheetNames] = useState([]);
@@ -31,22 +32,30 @@ export function ExcelMultiSheetPreview({ onSuccess = null }) {
   const ImportCaseMutation = useMutation({
     mutationFn: importCases,
     onSuccess: (res) => {
-      alert("Data Imported successfully!");
+      toast("Data Imported successfully!", {
+        type: "success",
+      });
       onSuccess();
     },
     onError: (error) => {
-      console.error(error);
       alert("Error: " + error.message);
+      toast(error.message, {
+        type: "error",
+      });
     },
   });
 
   const handleImportCases = () => {
     // parse payload
-    const parsedPayload = data?.map((i, index) => ({
-      ...i,
-      unit: `unit-1`,
-      case: snakCase(selectedSheet),
-    }));
+    const parsedPayload = data?.map((i) => {
+      const unit = i?.Unit || i?.unit || "unit-0";
+      const { Unit, ...rest } = i; // Destructure to remove "Unit"
+      return {
+        ...rest,
+        unit: unit,
+        case: snakCase(selectedSheet),
+      };
+    });
 
     ImportCaseMutation.mutate(parsedPayload);
   };

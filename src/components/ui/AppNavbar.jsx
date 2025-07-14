@@ -16,7 +16,6 @@ import { Button } from "../button";
 export const ROUTES = {
   root: "/",
   dashboard: "/",
-  feed: "/feed",
   feeds: "/feeds",
   analytics: "/analytics",
   settings: "/settings",
@@ -31,11 +30,6 @@ const PRIMARY_LINKS = [
   {
     name: "Analytics",
     path: ROUTES.analytics,
-    icon: null,
-  },
-  {
-    name: "Feed",
-    path: ROUTES.feed,
     icon: null,
   },
   {

@@ -107,7 +107,9 @@ export const AdvancedSearchBar = ({
                 All
               </option>
               {options.map(({ value, label }) => (
-                <option value={value}>{label}</option>
+                <option key={value} value={value}>
+                  {label}
+                </option>
               ))}
             </Select>
           </Field>
