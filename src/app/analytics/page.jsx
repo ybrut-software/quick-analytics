@@ -1,6 +1,6 @@
 "use client";
 
-import { findCasesSummary } from "@/api/cases";
+import { findCases, findCasesSummary } from "@/api/cases";
 import { Button } from "@/components/button";
 import { Field, Label } from "@/components/fieldset";
 import { Heading } from "@/components/heading";
@@ -78,6 +78,12 @@ export default function AnalyticsPage() {
             </Button>
           </div>
         </div>
+
+        <div className="mt-5">
+          <Heading className={"mb-5"}>Cases & Unit Distribution Table</Heading>
+          <UnitCasesTable />
+        </div>
+
         <div className="my-4 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
           <Field>
             <Label>NAME OF EST / UNIT / BRS</Label>
@@ -155,6 +161,97 @@ export default function AnalyticsPage() {
     </>
   );
 }
+
+export const UnitCasesTable = () => {
+  const casesQuery = useQuery({
+    queryKey: ["cases"],
+    queryFn: findCases,
+  });
+
+  const casesData = casesQuery?.data || [];
+
+  // Normalize and aggregate data by unit and case
+  const units = [...new Set(casesData.map((item) => item.unit))];
+  const caseTypes = [...new Set(casesData.map((item) => item.case))];
+
+  // Initialize counts matrix
+  const counts = {};
+  units.forEach((unit) => {
+    counts[unit] = {};
+    caseTypes.forEach((caseType) => {
+      counts[unit][caseType] = 0;
+    });
+  });
+
+  // Aggregate counts
+  casesData.forEach((item) => {
+    counts[item.unit][item.case] = (counts[item.unit][item.case] || 0) + 1;
+  });
+
+  // Calculate totals per unit and per case
+  const unitTotals = {};
+  units.forEach((unit) => {
+    unitTotals[unit] = caseTypes.reduce(
+      (sum, caseType) => sum + (counts[unit][caseType] || 0),
+      0
+    );
+  });
+
+  const caseTotals = {};
+  caseTypes.forEach((caseType) => {
+    caseTotals[caseType] = units.reduce(
+      (sum, unit) => sum + (counts[unit][caseType] || 0),
+      0
+    );
+  });
+
+  const grandTotal = units.reduce((sum, unit) => sum + unitTotals[unit], 0);
+
+  return (
+    <Table>
+      <TableHead>
+        <TableRow className="bg-gray-100">
+          <TableHeader>UNIT CASES</TableHeader>
+          {units.map((unit) => (
+            <TableHeader key={unit}>{unit}</TableHeader>
+          ))}
+          <TableHeader>Total</TableHeader>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {caseTypes.map((caseType) => (
+          <TableRow key={caseType}>
+            <TableCell>
+              {caseType
+                .replace(/_/g, " ")
+                .replace(/\b\w/g, (l) => l.toUpperCase())}
+            </TableCell>
+            {units.map((unit) => (
+              <TableCell key={`${unit}-${caseType}`}>
+                {counts[unit][caseType] || 0}
+              </TableCell>
+            ))}
+            <TableCell>{caseTotals[caseType] || 0}</TableCell>
+          </TableRow>
+        ))}
+        <TableRow className="bg-gray-100">
+          <TableCell className="border p-2 font-bold">Total</TableCell>
+          {units.map((unit) => (
+            <TableCell
+              key={`total-${unit}`}
+              className="border p-2 text-center font-bold"
+            >
+              {unitTotals[unit] || 0}
+            </TableCell>
+          ))}
+          <TableCell className="border p-2 text-center font-bold">
+            {grandTotal}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+};
 
 export const CasesTable = ({ data, isLoading, search = false }) => {
   const [cases, setCases] = useState(data || []);
